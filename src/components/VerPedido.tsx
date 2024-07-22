@@ -1,6 +1,6 @@
 import { Alert, Button, Table } from "react-bootstrap";
 import Pedido from "../models/Pedido";
-import { findAll, cancelarPedido } from "../services/pedidoService"
+import { findAll,cancelar } from "../services/pedidoService"
 import { Titulo } from "./Titulo";
 import { ModalPrdouctos } from "./ModalProductos";
 import { useEffect, useState } from "react";
@@ -32,13 +32,18 @@ export const VerPedido = () =>{
 
     const handleCancelar = (pedido: Pedido)=>{
          pedido.estatusPedido = cancelado;
-         cancelarPedido(pedido.id,pedido).then(cancelado => 
+         cancelar(pedido.id,pedido).then(cancela => 
             {
                 
-                if(cancelado?.status == 200)
+                if(cancela?.status == 200)
                    {   alert("El pedido ha sido cancelado");
                     window.location.reload();
-                   }else{alert("No se actualizo el pedido")}
+                   }else if(cancela?.status == 409) 
+                    {
+                        alert(cancela.data)
+                    }else{
+                        alert('Ocurrio un error'+cancela?.data)
+                    }
 
             })
             
