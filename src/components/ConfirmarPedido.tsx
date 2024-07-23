@@ -1,30 +1,16 @@
 import { Button } from "react-bootstrap";
 import Item from "../models/Item";
 
-import EstatusPedido from "../models/EstatusPedido";
 import Pedido from "../models/Pedido";
 import {save } from "../services/pedidoService"
 import { useEffect, useState } from "react";
-import Empleado from "../models/Empleado";
-import Cliente from "../models/Cliente";
-import Direccion from "../models/Direccion";
-
+import  {empleado,cliente,responseEstatus,status,estatusConfirmado, } from "../constantes/constantes"
 
 interface ConfirmarPedidoProps{
     item : Item | undefined | null;
 }
 
 
-const status: EstatusPedido = {
-    id:1,
-    codigo: 1,
-    descripcion: 'Pendiente'
-}
-const responseEstatus: number =200;
-const direccion: Direccion= {id:null,calle:'LA barda', colonia:'Zapotitla',entidadFederativa:'CDMX', numeroExterior:'48',numeroInterior:'19'};
-const empleado:Empleado = {id:1,nombre:'Alex',apellido:'Santiago',numeroEmpleado:'4031059',sexo:'M'};
-const cliente: Cliente={id:null,nombre:'Gael',apellido:'Callejas',direccion: direccion}
-const estatusConfirmado: EstatusPedido={id:2,codigo:2,descripcion:'Entregado'};
 
 export const ConfirmarPedido = (props: ConfirmarPedidoProps) =>{
 

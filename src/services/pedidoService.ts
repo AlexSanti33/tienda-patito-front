@@ -1,16 +1,12 @@
 import axios from "axios";
 import Pedido from "../models/Pedido";
+import  {config } from "../constantes/constantes"
 
-const config = {
-    headers: {'Access-Control-Allow-Origin': '*',
-                'Access-Control-Allow-Headers': 'POST, GET, PUT, DELETE, OPTIONS, HEAD, Authorization, Origin, Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers, Access-Control-Allow-Origin',
-                'Content-Type': 'application/json',}
-}
 const BASE_URL='http://localhost:8080/pedido';
 
 export const findAll = async() => {
     try {
-        const response = await axios.get(BASE_URL);
+        const response = await axios.get(BASE_URL,config);
         const responseData: Pedido[] =response.data
         return responseData;
     } catch (error) {

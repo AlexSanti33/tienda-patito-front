@@ -1,15 +1,21 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Alert, Button, Container } from "react-bootstrap";
 import {findByHawaId} from "../services/productService";
+import {login } from "../services/authenticationService";
 import Producto from "../models/Producto";
 import { PedidoView } from "./CrearPedido";
 import { Titulo } from "./Titulo";
 import { Link } from "react-router-dom";
-
 export const SearchProduct = () =>{
 
     const [hawaId,setHawaId] = useState(0);
     const [product,setProduct] = useState<Producto>();
+
+    useEffect(()=>{
+        login().then(auth => {  
+            sessionStorage.setItem('token','Bearer '+ auth?.token);
+        })
+    },[]);
 
    const handleClick = (e:  React.MouseEvent<HTMLButtonElement> | undefined )=>{
     console.log(e);
