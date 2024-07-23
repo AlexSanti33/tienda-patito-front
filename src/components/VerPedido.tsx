@@ -60,6 +60,7 @@ export const VerPedido = () =>{
                     <th>Pedido No</th>
                     <th>Nombre Cliente</th>
                     <th>Nombre empleado</th>
+                    <th>Fecha de evento</th>
                     <th>Estatus</th>
                     <th>Acciones</th>
                     </tr>
@@ -71,8 +72,8 @@ export const VerPedido = () =>{
                         <td>{pedido.id}</td>
                         <td>{pedido.cliente.nombre}</td>
                         <td>{pedido.empleado.nombre}</td>
+                        <td>{pedido.fechaEvento.toLocaleString()}</td>
                         <td>{pedido.estatusPedido.descripcion}</td>
-
                         <td><Button variant="primary" onClick={()=>handleShow(pedido.items)}>Ver detalle Pedido</Button>
                         <Button variant="danger" onClick={()=>handleCancelar(pedido)} disabled={pedido.estatusPedido.codigo === 3}>Cancelar</Button>
                         </td>

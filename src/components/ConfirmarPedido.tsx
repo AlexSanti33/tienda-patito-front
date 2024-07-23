@@ -4,7 +4,7 @@ import Item from "../models/Item";
 import Pedido from "../models/Pedido";
 import {save } from "../services/pedidoService"
 import { useEffect, useState } from "react";
-import  {empleado,cliente,responseEstatus,status,estatusConfirmado, } from "../constantes/constantes"
+import  {empleado,cliente,responseEstatus,status,estatusConfirmado} from "../constantes/constantes"
 
 interface ConfirmarPedidoProps{
     item : Item | undefined | null;
@@ -49,7 +49,7 @@ export const ConfirmarPedido = (props: ConfirmarPedidoProps) =>{
     const confirmarPedidoHandler = (e:  React.MouseEvent<HTMLButtonElement> | undefined) => {
         e?.stopPropagation();
 
-        const pedido: Pedido={id: null,items:items,empleado: empleado ,cliente:cliente,estatusPedido: estatusConfirmado,ip:'10.12.12.1'}
+        const pedido: Pedido={id: null,items:items,empleado: empleado() ,cliente:cliente,estatusPedido: estatusConfirmado,ip:'10.12.12.1'}
 
          save(pedido).then(response => {
            if(responseEstatus == response?.status){

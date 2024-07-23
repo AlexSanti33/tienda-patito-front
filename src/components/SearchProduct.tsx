@@ -6,6 +6,7 @@ import Producto from "../models/Producto";
 import { PedidoView } from "./CrearPedido";
 import { Titulo } from "./Titulo";
 import { Link } from "react-router-dom";
+import Empleado from "../models/Empleado";
 export const SearchProduct = () =>{
 
     const [hawaId,setHawaId] = useState(0);
@@ -14,6 +15,8 @@ export const SearchProduct = () =>{
     useEffect(()=>{
         login().then(auth => {  
             sessionStorage.setItem('token','Bearer '+ auth?.token);
+            const empleado:Empleado | undefined = auth?.empleado
+            sessionStorage.setItem('empleado',JSON.stringify(empleado));
         })
     },[]);
 

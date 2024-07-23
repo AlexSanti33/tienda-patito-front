@@ -1,7 +1,5 @@
-import { useState } from "react";
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
-import { Titulo } from "./Titulo";
 import Item from "../models/Item";
 import { Table } from "react-bootstrap";
 
