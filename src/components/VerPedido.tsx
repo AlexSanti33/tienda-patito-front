@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import Item from "../models/Item";
 import { Link } from "react-router-dom";
 import EstatusPedido from "../models/EstatusPedido";
+import moment from "moment";
 
 const cancelado: EstatusPedido ={
     id: 3,
@@ -63,11 +64,11 @@ export const VerPedido = () =>{
                 <tbody>
                     {pedidosConfirmados?.map(pedido => 
 
-                        <tr>
+                        <tr key={pedido.id}>
                         <td>{pedido.id}</td>
                         <td>{pedido.cliente.nombre}</td>
                         <td>{pedido.empleado.nombre}</td>
-                        <td>{pedido.fechaEvento?.toLocaleString()}</td>
+                        <td> {moment(pedido.fechaEvento?.toString()).format('YYYY-MM-DD hh:mm:ss')}  </td>
                         <td>{pedido.estatusPedido.descripcion}</td>
                         <td><Button variant="primary" onClick={()=>handleShow(pedido.items)}>Ver detalle Pedido</Button>
                         <Button variant="danger" onClick={()=>handleCancelar(pedido)} disabled={pedido.estatusPedido.codigo === 3}>Cancelar</Button>

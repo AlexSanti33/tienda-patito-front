@@ -53,7 +53,8 @@ export const ConfirmarPedido = (props: ConfirmarPedidoProps) =>{
 
          save(pedido).then(response => {
            if(responseEstatus == response?.status){
-                alert('Se guardo el pedido')
+                const pedido: Pedido = response.data; 
+                alert('Se guardo el pedido con el numero de pedido: ' + pedido.id)
                 window.location.reload();
            }
         });
