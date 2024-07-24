@@ -1,4 +1,4 @@
-import { Button } from "react-bootstrap";
+import { Button, Table } from "react-bootstrap";
 import Item from "../models/Item";
 
 import Pedido from "../models/Pedido";
@@ -49,7 +49,7 @@ export const ConfirmarPedido = (props: ConfirmarPedidoProps) =>{
     const confirmarPedidoHandler = (e:  React.MouseEvent<HTMLButtonElement> | undefined) => {
         e?.stopPropagation();
 
-        const pedido: Pedido={id: null,items:items,empleado: empleado() ,cliente:cliente,estatusPedido: estatusConfirmado,ip:'10.12.12.1'}
+        const pedido: Pedido={id: null,items:items,empleado: empleado() ,cliente:cliente,estatusPedido: estatusConfirmado,ip:'10.12.12.1',fechaEvento: null}
 
          save(pedido).then(response => {
            if(responseEstatus == response?.status){
@@ -65,7 +65,25 @@ export const ConfirmarPedido = (props: ConfirmarPedidoProps) =>{
             <>
             { items.length > 0 ?
 
-            <><table>
+        <> 
+        <div className="container border">
+        <div className="col">
+                <div className="row border" >
+                <div className="col">Nombre Empleado</div>
+                <div className="col">Numero de Empleado</div>
+                <div className="col">Nombre Cliente</div>
+                <div className="col">Direccion</div>
+                </div>
+                <div className="row border">
+                <div className="col">{empleado().nombre} {empleado().apellido}</div>
+                <div className="col">{empleado().numeroEmpleado}</div>
+                <div className="col">{cliente.nombre} {cliente.apellido}</div>
+                <div className="col">{cliente.direccion.calle} {cliente.direccion.colonia} {cliente.direccion.entidadFederativa}</div>
+                </div>
+            </div>
+        
+        <br />
+           <Table striped bordered hover>
                     <thead>
                         <tr>
                             <th>Hawa</th>
@@ -74,7 +92,6 @@ export const ConfirmarPedido = (props: ConfirmarPedidoProps) =>{
                             <th>Existencias</th>
                             <th>Cantidad</th>
                             <th>Estatus</th>
-                            <th>Quitar</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -85,14 +102,13 @@ export const ConfirmarPedido = (props: ConfirmarPedidoProps) =>{
                             <td>{itemL.producto?.inventario?.existenciaActual}</td>
                             <td>{itemL.cantidad}</td>
                             <td>{status.descripcion}</td>
-                            <td><Button className="warning" value={itemL.producto?.hawaId} onClick={handleClick}>Eliminar</Button></td>
                         </tr>
                         )}
                     </tbody>
-                </table>
-                <Button onClick={confirmarPedidoHandler}>Confirmar pedido</Button></>
+                </Table>
+                
+                <Button onClick={confirmarPedidoHandler}>Confirmar pedido</Button></div></>
         : <h1>Sin productos Seleccionados</h1>}
-        
         </>
     )
 }

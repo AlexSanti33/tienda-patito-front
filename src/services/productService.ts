@@ -11,10 +11,8 @@ export const findByHawaId = async(id:  number) =>{
         const responseData: Producto = response.data; 
         return responseData;
     } catch (error) {
-        let errorMessage = "Failed to do something exceptional";
-        if (error instanceof Error) {
-          errorMessage = error.message;
-        }
+        const  errorMessage = error.response.data;
+        alert('Error en la solicitud: '+errorMessage);
         console.log(errorMessage);
       }
 

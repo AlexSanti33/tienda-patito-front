@@ -38,12 +38,7 @@ export const VerPedido = () =>{
                 if(cancela?.status == 200)
                    {   alert("El pedido ha sido cancelado");
                     window.location.reload();
-                   }else if(cancela?.status == 409) 
-                    {
-                        alert(cancela.data)
-                    }else{
-                        alert('Ocurrio un error'+cancela?.data)
-                    }
+                   }
 
             })
             
@@ -72,7 +67,7 @@ export const VerPedido = () =>{
                         <td>{pedido.id}</td>
                         <td>{pedido.cliente.nombre}</td>
                         <td>{pedido.empleado.nombre}</td>
-                        <td>{pedido.fechaEvento.toLocaleString()}</td>
+                        <td>{pedido.fechaEvento?.toLocaleString()}</td>
                         <td>{pedido.estatusPedido.descripcion}</td>
                         <td><Button variant="primary" onClick={()=>handleShow(pedido.items)}>Ver detalle Pedido</Button>
                         <Button variant="danger" onClick={()=>handleCancelar(pedido)} disabled={pedido.estatusPedido.codigo === 3}>Cancelar</Button>

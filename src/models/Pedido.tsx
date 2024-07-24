@@ -10,6 +10,6 @@ export default interface Pedido {
     cliente: Cliente;
     estatusPedido: EstatusPedido;
     ip: string;
-    fechaEvento: Date;
+    fechaEvento: Date| null;
 
 }
